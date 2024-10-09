@@ -1,7 +1,7 @@
 "use client";
 import { Menubar,MenubarMenu,MenubarTrigger } from "@radix-ui/react-menubar";
-/*import AccountMenu from "@/components/account/AccountMenu";*/
-/*import { Logo } from "@/components/layout/logo";*/
+import MediumButton from "../mediumbutton";
+
 
 export default function AppBar() {
   return (
@@ -15,7 +15,9 @@ export default function AppBar() {
         </MenubarMenu>
         <div className="grow" />
         <section className="my-12 mx-6 ">
-          {/*<AccountMenu />*/}
+            <a href="/componets/account">
+          {/*<MediumButton> Sign UP </MediumButton>*/}
+          </a>
         </section>
       </Menubar>
     </div>

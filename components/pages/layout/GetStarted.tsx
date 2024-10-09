@@ -10,7 +10,7 @@ function StepCard({ icon, title, description }: { icon: React.ReactNode, title: 
         <div className="bg-gray-900 rounded-full p-4">{icon}</div>
       </div>
       <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-      <p className="text-gray-400">{description}</p>
+      <p className="text-white">{description}</p>
     </div>
   );
 }
@@ -39,7 +39,7 @@ export default function GetStartedSection() {
         </div>
         <div className="flex justify-center mt-10">
           <Link href="/commission">
-            <Button className="bg-purple-900">
+            <Button className="bg-purple-200">
               Get Started
             </Button>
           </Link>

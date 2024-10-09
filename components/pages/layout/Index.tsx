@@ -28,17 +28,14 @@ const Index = () => {
               title: "BreachWatchers",
               links: [
                 { name: "Explore", href: "/explore" },
-                { name: "Digital Art", href: "/digital-art" },
                 { name: "About", href: "/about" },
               ],
             },
             {
               title: "My Account",
               links: [
-                { name: "Profile", href: "/profile" },
-                { name: "Favourites", href: "/favourites" },
+                { name: "Dashboard", href: "/dashboard" },
                 { name: "Watchlist", href: "/watchlist" },
-                { name: "My Collections", href: "/collections" },
                 { name: "Settings", href: "/settings" },
               ],
             },
@@ -47,7 +44,6 @@ const Index = () => {
               links: [
                 { name: "Platform Status", href: "/status" },
                 { name: "Partners", href: "/partners" },
-                { name: "Taxes", href: "/taxes" },
                 { name: "Newsletter", href: "/newsletter" },
               ],
             },
