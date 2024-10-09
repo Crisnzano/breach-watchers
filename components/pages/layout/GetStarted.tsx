@@ -1,5 +1,7 @@
 import React from "react";
 import { FaUpload, FaClipboardList, FaTag } from "react-icons/fa"; 
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 function StepCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
   return (
@@ -34,6 +36,13 @@ export default function GetStartedSection() {
             title="Get your report"
             description="See missing sections, along with suggestions for improvement."
           />
+        </div>
+        <div className="flex justify-center mt-10">
+          <Link href="/commission">
+            <Button className="bg-purple-900">
+              Get Started
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
