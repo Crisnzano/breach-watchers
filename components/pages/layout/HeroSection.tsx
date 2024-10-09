@@ -1,16 +1,15 @@
 import React from "react";
-
 export default function HeroSection() {
   return (
     <section className="relative flex flex-col lg:flex-row items-center justify-between px-8 py-16 lg:px-24 lg:py-32 bg-gradient-to-r from-purple-400 via-purple-900 to-purple-900 text-white">
       <div className="flex flex-row lg:w-1/2">
         <img
-          src="/assets/Frame1.png"
+          src="/assets/Image1.png"
           alt="Art Image 1"
           className="w-full h-96 ps-16 pr-2"
         />
         <img
-          src="/assets/Frame2.png"
+          src="/assets/Image2.png"
           alt="Art Image 2"
           className="w-full h-96 pe-14 pl-2"
         />
