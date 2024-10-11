@@ -1,6 +1,6 @@
 // pages/upload.tsx (convert to .tsx for TypeScript)
 import { useState } from 'react';
-import Layout from '@/components/Layout';
+import LayoutPage from '@/components/dashboard/Layout';
 
 const UploadPage = () => {
   const [file, setFile] = useState<File | null>(null); // Explicitly define the file state type
@@ -18,7 +18,7 @@ const UploadPage = () => {
   };
 
   return (
-    <Layout>
+    <LayoutPage>
       <div className="p-8 bg-purple-50 flex-1">
         <h1 className="text-3xl font-semibold mb-6">Compliance Audit Checklist</h1>
         <div className="bg-white p-6 rounded-lg shadow-md text-center">
@@ -28,7 +28,7 @@ const UploadPage = () => {
           </button>
         </div>
       </div>
-    </Layout>
+    </LayoutPage>
   );
 };
 

@@ -1,11 +1,11 @@
-import Layout from '../Layout';
+import LayoutPage from '../dashboard/Layout';
 import '@/styles/globals.css'; // Import your global CSS
 
 function MyApp({ Component, pageProps }: any) {
   return (
-    <Layout>
+    <LayoutPage>
       <Component {...pageProps} />
-    </Layout>
+    </LayoutPage>
   );
 }
 

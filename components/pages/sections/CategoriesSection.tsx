@@ -8,7 +8,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-
 export default function CarouselDemo() {
   // Array of image objects with corresponding text and image paths
   const images = [
@@ -24,12 +23,12 @@ export default function CarouselDemo() {
           {images.map((image) => (
             <CarouselItem key={image.id} className="w-1/3 px-2"> {/* Adjust the width to fit 3 images */}
               <Card>
-                <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
+                <CardContent className="flex flex-col items-center justify-center p-4"> {/* Reduced padding */}
                   {/* Image from the public folder */}
                   <img
                     src={image.src}
                     alt={image.text}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-60" // Increased height to h-60
                   />
                   {/* Text description below the image */}
                   <span className="mt-4 text-center text-xl text-white">

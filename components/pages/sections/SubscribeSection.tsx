@@ -1,8 +1,6 @@
 import React from "react";
 import Image from 'next/image';
-import Image6 from '@/components/public/Image6.png';
-import Image7 from '@/components/public/Image7.png';
-import Image8 from '@/components/public/Image8.png';
+
 
 export default function SubscribeSection() {
   return (
@@ -12,7 +10,7 @@ export default function SubscribeSection() {
         <div className="relative w-max">
           {/* Main Image */}
           <Image
-            src={Image6}
+            src="/Image6.png"
             alt="Main Art"
             width={400}
             height={400}
@@ -21,7 +19,7 @@ export default function SubscribeSection() {
           
           {/* Overlayed Image 1 */}
           <Image
-            src={Image7}
+            src="/Image7.png"
             alt="Overlayed Art 1"
             width={250}
             height={250}
@@ -30,7 +28,7 @@ export default function SubscribeSection() {
           
           {/* Overlayed Image 2 */}
           <Image
-            src={Image8}
+            src="/Image8.png"
             alt="Overlayed Art 2"
             width={250}
             height={250}

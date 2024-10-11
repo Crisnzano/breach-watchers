@@ -1,21 +1,20 @@
 import React from "react";
 import Image from 'next/image';
-import Image1 from '@/components/public/Image1.png';
-import Image2 from '@/components/public/Image2.png';
+
 
 export default function HeroSection() {
   return (
     <section className="relative flex flex-col lg:flex-row items-center justify-between px-8 py-16 lg:px-24 lg:py-32 bg-gradient-to-r from-purple-400 via-purple-900 to-purple-900 text-white">
       <div className="flex flex-row lg:w-1/2">
         <Image
-          src={Image1}
+          src="/Image1.png"
           alt="Art Image 1"
           width={500}
           height={500}
           className="w-full h-96 ps-16 pr-2"
         />
         <Image
-          src={Image2}
+          src="/Image2.png"
           alt="Art Image 2"
           width={500}
           height={500}
