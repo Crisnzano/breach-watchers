@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   CalendarIcon,
   DownloadCloudIcon,
-  BellIcon,
 } from "lucide-react";
+import { FaRegFileAlt, FaUpload, FaCheckCircle, FaGlobe } from 'react-icons/fa';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -17,8 +18,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import LayoutPage from "@/components/dashboard/Layout";
-import AppBar from "@/components/layout/AppBar";
+import { ReactNode } from 'react'; // Import ReactNode for typing children
 
 // Mock data
 const complianceStatus = {
@@ -36,6 +36,52 @@ const complianceStatus = {
   ],
 };
 
+// Sidebar component
+const Sidebar = () => {
+  return (
+    <div className="w-64 bg-white text-black flex flex-col p-15 pt-20 h-screen">
+      <nav className="flex flex-col gap-4">
+        <Link href="/dashboard/index" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
+          <FaRegFileAlt className="mr-3" />
+          Reports
+        </Link>
+        <Link href="/dashboard/checklist" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
+          <FaCheckCircle className="mr-3" />
+          Compliance Checklist
+        </Link>
+        <Link href="/dashboard/upload" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
+          <FaUpload className="mr-3" />
+          Upload Data
+        </Link>
+        <Link href="/dashboard/audit" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
+          <FaGlobe className="mr-3" />
+          Website Audit
+        </Link>
+      </nav>
+    </div>
+  );
+};
+
+interface DashboardLayoutProps {
+  children: ReactNode;
+}
+
+// Layout component for dashboard
+const LayoutPage = ({ children }: DashboardLayoutProps) => {
+  return (
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main content area */}
+      <div className="flex-1 bg-gray-100 p-6 overflow-y-auto">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+// Main compliance dashboard page
 export default function ComplianceDashboard() {
   const [reminderSent, setReminderSent] = useState(false);
 
@@ -53,7 +99,6 @@ export default function ComplianceDashboard() {
   };
 
   const sendReminder = () => {
-    // Simulating sending a reminder
     setTimeout(() => {
       setReminderSent(true);
       setTimeout(() => setReminderSent(false), 3000);
@@ -61,7 +106,6 @@ export default function ComplianceDashboard() {
   };
 
   const downloadReport = () => {
-    // Simulating report download
     alert("Downloading compliance report...");
   };
 

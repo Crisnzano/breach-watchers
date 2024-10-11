@@ -14,11 +14,11 @@ export const Sidebar = () => {
         <FaCheckCircle className="mr-3" />
         Compliance Checklist
         </Link>
-        <Link href="/dashboard/Upload" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
+        <Link href="/dashboard/upload" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
         <FaUpload className="mr-3" />
         Upload Data
         </Link>
-        <Link href="/dashboard/Audit" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
+        <Link href="/dashboard/audit" className="block py-2 px-6 rounded-lg hover:bg-blue-300 flex items-center">
         <FaGlobe className="mr-3" />
         Website Audit
         </Link>

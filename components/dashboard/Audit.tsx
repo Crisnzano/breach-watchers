@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutPage from '@/components/dashboard/Layout';
+import LayoutPage from './Layout';
 
 const Audit = () => {
   return (
