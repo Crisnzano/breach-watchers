@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
 import LayoutPage from '../Layout'
+import AppBar from '@/components/layout/AppBar'
 
 // Mock data
 const auditChecklist = [
@@ -69,7 +70,9 @@ export default function ComplianceAuditChecklist() {
 
   return (
     <LayoutPage>
-    <Card className="w-full max-w-3xl mx-auto">
+      <AppBar/>
+      <div className="container w-full bg-purple-200" style={{ height: 'calc(100vh - 64px)', paddingTop: '150px' }}>
+    <Card className="w-full max-w-3xl mx-auto pt-20">
       <CardHeader>
         <CardTitle className="text-2xl">Compliance Audit Checklist</CardTitle>
         <CardDescription>
@@ -124,6 +127,7 @@ export default function ComplianceAuditChecklist() {
         </Button>
       </CardFooter>
     </Card>
+    </div>
     </LayoutPage>
   )
 }

@@ -1,6 +1,6 @@
 // pages/upload.tsx (convert to .tsx for TypeScript)
 import { useState } from 'react';
-import LayoutPage from '@/components/dashboard/Layout';
+import LayoutPage from './Layout';
 
 const UploadPage = () => {
   const [file, setFile] = useState<File | null>(null); // Explicitly define the file state type

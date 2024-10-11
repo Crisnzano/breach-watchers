@@ -1,5 +1,5 @@
 // pages/success.js
-import LayoutPage from "./Layout";
+import LayoutPage from "@/components/dashboard/Layout";
 
 const SuccessPage = () => {
   return (

@@ -38,7 +38,7 @@ export default function GetStartedSection() {
           />
         </div>
         <div className="flex justify-center mt-10">
-          <Link href="/dashboard">
+          <Link href="/dashboard/index">
             <Button className="bg-purple-200">
               Get Started
             </Button>
