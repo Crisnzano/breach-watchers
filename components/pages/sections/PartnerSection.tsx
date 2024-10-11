@@ -2,9 +2,9 @@ import React from "react";
 
 export default function PartnersSection() {
   const partners = [
-    {logo: "/assets/base.png", alt: "Base" },
-    {logo: "/assets/optimism.png",alt: "Optimism" },
-    {logo: "/assets/safaridao.png", alt: "Safari Dao" },
+    {logo: "/assets/base.png", alt: "SupaBase" },
+    {logo: "/assets/optimism.png",alt: "Vercel" },
+    {logo: "/assets/safaridao.png", alt: "Laravel" },
   ];
 
   return (
