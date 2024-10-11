@@ -4,7 +4,8 @@ import { DatePicker } from "../layout/DatePicker";
 const Dashboard = () => {
   return (
     <Layout>
-      <div className="flex-1 min-h-screen p-8 bg-purple-200 ">
+      {/* Add top padding equal to the AppBar height */}
+      <div className="flex-1 min-h-screen p-12 bg-purple-200 pt-20">
         <h1 className="text-3xl font-semibold mb-8 text-black">Reports</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
