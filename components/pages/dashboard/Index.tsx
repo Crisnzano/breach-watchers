@@ -4,7 +4,7 @@ import { DatePicker } from "../layout/DatePicker";
 const Dashboard = () => {
   return (
     <Layout>
-      <div className="flex-1 min-h-screen p-8 bg-purple-200  paddingTop: '150px'">
+      <div className="flex-1 min-h-screen p-8 bg-purple-200 ">
         <h1 className="text-3xl font-semibold mb-8 text-black">Reports</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
