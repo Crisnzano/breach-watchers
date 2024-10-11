@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import GetStartedSection from './GetStarted';
 import SubscribeSection from './SubscribeSection';
-import CategoriesSection from './CategoriesSection';
+import CarouselDemo from './CategoriesSection';
 import PartnersSection from './PartnerSection';
 
 const Index = () => {
@@ -16,7 +16,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <PartnersSection/>
-        <CategoriesSection />
+        <CarouselDemo/>
         <GetStartedSection />
         <SubscribeSection />
   

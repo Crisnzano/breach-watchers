@@ -1,9 +1,9 @@
 // pages/success.js
-import Layout from "@/components/Layout";
+import LayoutPage from "@/components/dashboard/Layout";
 
 const SuccessPage = () => {
   return (
-    <Layout>
+    <LayoutPage>
       <div className="p-8 bg-purple-50 flex-1 text-center">
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h1 className="text-3xl font-bold">Upload Successful</h1>
@@ -13,7 +13,7 @@ const SuccessPage = () => {
           </button>
         </div>
       </div>
-    </Layout>
+    </LayoutPage>
   );
 };
 

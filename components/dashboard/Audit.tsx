@@ -1,11 +1,12 @@
 import React from 'react';
+import LayoutPage from '@/components/dashboard/Layout';
 
 const Audit = () => {
   return (
-    <div>
+    <LayoutPage>
       <h1>Website Audit</h1>
       {/* Add your audit content here */}
-    </div>
+    </LayoutPage>
   );
 };
 
