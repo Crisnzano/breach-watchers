@@ -59,10 +59,10 @@ export default function ComplianceDashboard() {
     <LayoutPage>
      <AppBar/>
     <div className="container w-full bg-purple-200" style={{ height: 'calc(100vh - 64px)', paddingTop: '150px' }}>
-      <h1 className="text-2xl font-bold mb-6">Compliance Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6 text-black">Compliance Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
+        <Card >
           <CardHeader>
             <CardTitle>Compliance Status</CardTitle>
             <CardDescription>Current compliance overview</CardDescription>
@@ -99,12 +99,7 @@ export default function ComplianceDashboard() {
               ))}
             </ul>
           </CardContent>
-          <CardFooter>
-            <Button onClick={sendReminder} disabled={reminderSent}>
-              <BellIcon className="mr-2 h-4 w-4" />
-              {reminderSent ? 'Reminder Sent!' : 'Send Reminders'}
-            </Button>
-          </CardFooter>
+          
         </Card>
       </div>
 
