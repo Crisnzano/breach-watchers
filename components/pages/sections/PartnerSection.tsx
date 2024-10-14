@@ -1,10 +1,11 @@
 import React from "react";
+import SupabaseLogo from "@/components/supabase-logo";
 
 export default function PartnersSection() {
   const partners = [
-    {logo: "/assets/base.png", alt: "SupaBase" },
-    {logo: "/assets/optimism.png",alt: "Vercel" },
-    {logo: "/assets/safaridao.png", alt: "Laravel" },
+    {logo: "/supabase.png", alt: "SupaBase" },
+    {logo: "/vercel.png",alt: "Vercel" },
+    {logo: "/laravel.png", alt: "Laravel" },
   ];
 
   return (
