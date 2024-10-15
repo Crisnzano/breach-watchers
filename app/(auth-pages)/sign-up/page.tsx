@@ -30,7 +30,7 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
             name="email"
             placeholder="you@example.com"
             required
-            className="text-black"
+            className="text-white"
           />
           <Label htmlFor="password">Password</Label>
           <Input
@@ -39,7 +39,7 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
             placeholder="Your password"
             minLength={6}
             required
-            className="text-black"
+            className="text-white"
           />
           <SubmitButton formAction={signUpAction} pendingText="Signing up...">
             Sign up
