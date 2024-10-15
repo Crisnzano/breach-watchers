@@ -22,7 +22,7 @@ export default function Login({ searchParams }: { searchParams: Message }) {
             name="email"
             placeholder="you@example.com"
             required
-            className="text-black"
+            className="text-white"
           />
           <div className="flex justify-between items-center">
             <Label htmlFor="password">Password</Label>
@@ -38,7 +38,7 @@ export default function Login({ searchParams }: { searchParams: Message }) {
             name="password"
             placeholder="Your password"
             required
-            className="text-black"
+            className="text-white"
           />
           <SubmitButton pendingText="Signing In..." formAction={signInAction}>
             Sign in
