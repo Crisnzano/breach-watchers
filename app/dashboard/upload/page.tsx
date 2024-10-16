@@ -22,7 +22,7 @@ const UploadPage = () => {
   return (
     <LayoutPage>
       <AppBar/>
-      <div className="container w-full bg-purple-200" style={{ height: 'calc(100vh - 64px)', paddingTop: '150px' }}>
+      <div className="container w-full bg-purple-200" style={{ height: 'calc(100vh - 64px)', paddingTop: '300px' }}>
         <div className="p-8 bg-purple-50 flex-1 rounded-lg">
           <h1 className="text-3xl font-semibold mb-6 text-black">Upload Privacy policy </h1>
           <div className="bg-black p-6 rounded-lg shadow-md text-center">

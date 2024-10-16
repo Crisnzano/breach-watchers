@@ -53,7 +53,7 @@ export default function WebsiteAudit() {
   return (
     <LayoutPage>
       <AppBar/>
-      <div className="container w-full bg-purple-200" style={{ height: 'calc(100vh - 64px)', paddingTop: '150px' }}>
+      <div className="container w-full bg-purple-200" style={{ height: 'calc(100vh - 64px)', paddingTop: '300px' }}>
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle>Website Compliance Audit</CardTitle>

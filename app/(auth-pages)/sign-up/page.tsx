@@ -44,6 +44,13 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
           <SubmitButton formAction={signUpAction} pendingText="Signing up...">
             Sign up
           </SubmitButton>
+          <div className="flex justify-center mt-10">
+          <Link className="underline" href="/account">
+            
+              Register your Business
+            
+          </Link>
+        </div>
           <FormMessage message={searchParams} />
         </div>
       </form>
