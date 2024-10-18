@@ -1,9 +1,12 @@
-// pages/success.js
+"use client"
+
 import LayoutPage from "@/components/dashboard/Layout";
+import AppBar from '@/components/layout/AppBar'
 
 const SuccessPage = () => {
   return (
     <LayoutPage>
+      <AppBar/>
       <div className="p-8 bg-purple-50 flex-1 text-center">
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h1 className="text-3xl font-bold">Upload Successful</h1>
