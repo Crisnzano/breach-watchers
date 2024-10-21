@@ -39,9 +39,11 @@ export default function AppBar() {
     <div className="fixed top-0 left-0 right-0 z-10 p-2 bg-purple-900 border-b">
       <Menubar className="rounded-none border-none px-2 lg:px-4 flex justify-between items-center">
         <MenubarMenu>
+        <a href="/protected">
           <MenubarTrigger>
             <p className="text-white text-xl font-bold">BreachWatchers</p>
           </MenubarTrigger>
+        </a>
         </MenubarMenu>
         <div>
           {user ? (
