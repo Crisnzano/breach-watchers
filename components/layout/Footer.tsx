@@ -16,7 +16,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({
-  emailSubscriptionText = "Enter your email to get notified by AfriCanvas for latest updates.",
+  emailSubscriptionText = "Enter your email to get notified by BreachWatchers for latest updates.",
   sections,
   socialLinks,
   copyrightText,
