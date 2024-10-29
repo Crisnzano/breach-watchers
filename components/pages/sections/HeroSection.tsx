@@ -11,14 +11,14 @@ export default function HeroSection() {
           alt="Art Image 1"
           width={500}
           height={500}
-          className="w-full h-96 ps-16 pr-2"
+          className="w-full h-96 ps-16 pr-2 rounded-2xl"
         />
         <Image
           src="/Image2.png"
           alt="Art Image 2"
           width={500}
           height={500}
-          className="w-full h-96 pe-14 pl-2"
+          className="w-full h-96 pe-14 pl-2 rounded-2xl"
         />
       </div>
       <div className="flex flex-col items-start lg:w-1/2 space-y-6 mt-8 lg:mt-0 lg:ml-12">

@@ -27,32 +27,32 @@ const Index = () => {
             {
               title: "BreachWatchers",
               links: [
-                { name: "Explore", href: "/explore" },
-                { name: "About", href: "/about" },
+                { name: "Explore", href: "/" },
+                { name: "About", href: "/" },
               ],
             },
             {
               title: "My Account",
               links: [
                 { name: "Dashboard", href: "/dashboard" },
-                { name: "Watchlist", href: "/watchlist" },
-                { name: "Settings", href: "/settings" },
+                { name: "Watchlist", href: "/"},
+                { name: "Settings", href: "/" },
               ],
             },
             {
               title: "Resources",
               links: [
-                { name: "Platform Status", href: "/status" },
-                { name: "Partners", href: "/partners" },
-                { name: "Newsletter", href: "/newsletter" },
+                { name: "Platform Status", href: "/" },
+                { name: "Partners", href: "/" },
+                { name: "Newsletter", href: "/" },
               ],
             },
             {
               title: "Community",
               links: [
-                { name: "Help Center", href: "/help-center" },
-                { name: "Suggest Feature", href: "/suggest-feature" },
-                { name: "Subscribe", href: "/subscribe" },
+                { name: "Help Center", href: "/" },
+                { name: "Suggest Feature", href: "/" },
+                { name: "Subscribe", href: "/" },
               ],
             },
           ]}
@@ -62,8 +62,8 @@ const Index = () => {
             { icon: <FaLinkedin />, href: "https://linkedin.com" },
           ]}
           copyrightText="© BreachWatchers, Inc © All Rights Reserved"
-          termsLink="/terms"
-          privacyPolicyLink="/privacy-policy"
+          termsLink="/"
+          privacyPolicyLink="/"
       />
     </div>
   );
