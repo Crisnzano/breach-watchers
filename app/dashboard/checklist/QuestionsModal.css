@@ -1,0 +1,56 @@
+/* QuestionsModal.css */
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+    top: 20%;
+    overflow-y: auto; /* Enable scrolling */
+  max-height: 80vh;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.modal-content h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.checkbox-label {
+    display: block; /* Ensures checkboxes are aligned vertically */
+    margin: 8px 0; /* Spacing between checkboxes */
+    font-size: 16px;
+    color: #444;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1976d2; /* Material-UI primary color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1565c0; /* Darker shade for hover */
+}
+
+button:focus {
+    outline: none; /* Remove default outline */
+}

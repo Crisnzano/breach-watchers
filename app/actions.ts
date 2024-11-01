@@ -15,7 +15,7 @@ export const signUpAction = async (formData: FormData) => {
     return { error: "Email and password are required" };
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -27,11 +27,17 @@ export const signUpAction = async (formData: FormData) => {
     console.error(error.code + " " + error.message);
     return encodedRedirect("error", "/sign-up", error.message);
   } else {
-    return encodedRedirect(
-      "success",
-      "/sign-up",
-      "Thanks for signing up! Please check your email for a verification link.",
-    );
+    return {
+      status: "success",
+      redirectTo: "/account",
+      message: "Thanks for signing up! Please check your email for a verification link.",
+      userId: data.user?.id, // Include user ID here
+    };
+    // return encodedRedirect(
+    //   "success",
+    //   "/sign-up",
+    //   "Thanks for signing up! Please check your email for a verification link.",
+    // );
   }
 };
 
@@ -40,7 +46,7 @@ export const signInAction = async (formData: FormData) => {
   const password = formData.get("password") as string;
   const supabase = createClient();
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
@@ -48,8 +54,12 @@ export const signInAction = async (formData: FormData) => {
   if (error) {
     return encodedRedirect("error", "/sign-in", error.message);
   }
-
-  return redirect("/protected");
+  return {
+    status: "success",
+    redirectTo: "/protected",
+    message: "Thanks for signing up! Please check your email for a verification link.",
+    userId: data.user?.id,
+  };
 };
 
 export const forgotPasswordAction = async (formData: FormData) => {

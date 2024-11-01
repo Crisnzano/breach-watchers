@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CheckCircle,
   Circle,
@@ -13,63 +12,150 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import LayoutPage from "../Layout";
 import AppBar from "@/components/layout/AppBar";
+import axios from 'axios';
+import QuestionsModal from './QuestionsModal'; // Import the QuestionsModal component
+import { Modal, Box, CircularProgress, Typography } from '@mui/material'; // Modal component for loading state
+import { useRouter } from "next/navigation";
 
-// Mock data with links
-const auditChecklist = [
-  {
-    id: 1,
-    title: "Personal Data Collection and Consent",
-    description: "Ensure user consent and data relevance for activities",
-    completed: true,
-    steps: [
-      { text: "Review data collection processes", link: "/dashboard/datacollection" },
-      { text: "Verify consent mechanisms", link: " " },
-      { text: "Assess data relevance to business activities", link: " " },
-    ],
-  },
-  {
-    id: 2,
-    title: "Data Security",
-    description: "Evaluate storage, access, and encryption measures",
-    completed: false,
-    steps: [
-      { text: "Confirm cloud service country compliance", link: "/dashboard/datasecurity" },
-      { text: "Review password policies", link: "/password-policies" },
-      { text: "Assess access level controls", link: " " },
-      { text: "Verify data encryption methods", link: " " },
-    ],
-  },
-  {
-    id: 3,
-    title: "Data Subject Rights",
-    description: "Ensure compliance with data access rights",
-    completed: false,
-    steps: [
-      { text: "Review data access request process", link: "/dashboard/datasubject" },
-      { text: "Verify data portability measures", link: " " },
-      { text: "Assess right to erasure procedures", link: " " },
-    ],
-  },
-  {
-    id: 4,
-    title: "Data Breach Handling",
-    description: "Evaluate prevention and recovery measures",
-    completed: false,
-    steps: [
-      { text: "Review breach prevention strategies", link: "/dashboard/databreach" },
-      { text: "Assess incident response plan", link: " " },
-      { text: "Verify recovery procedures", link: " " },
-      { text: "Test breach notification process", link: "" },
-    ],
-  },
-];
+interface Stage {
+  id: number;
+  stage_id: string;
+  stage: string;
+  completed: boolean; // Changed to boolean for easier tracking
+}
 
 export default function ComplianceAuditChecklist() {
   const [checklistCompleted, setChecklistCompleted] = useState(false);
   const nextAuditDate = "2024-06-15";
+  const [stages, setStages] = useState<Stage[]>([]);
+  const [auditChecklist, setAuditChecklist] = useState<Stage[]>([]);
+  const [completedStages, setCompletedStages] = useState<number[]>([]); // Track completed stages
+  const [csrfToken, setCsrfToken] = useState('');
+  const [answers, setAnswers] = useState<Record<number, Record<number, string[]>>>({});
+  const [selectedStage, setSelectedStage] = useState<number | null>(null);
+  const [showQuestionsModal, setShowQuestionsModal] = useState(false);
+
+  // Modal states for loading and success
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const [reportLink, setReportLink] = useState('');
 
   const toggleChecklistCompletion = () => {
     setChecklistCompleted(!checklistCompleted);
+  };
+
+  const openQuestionsModal = (id: number, stage: string) => {
+    setSelectedStage(id); // Set the selected stage
+    setShowQuestionsModal(true); // Open the modal
+  };
+
+  const closeQuestionsModal = () => {
+    setShowQuestionsModal(false); // Close the modal
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/get-stages');
+        const data = response.data;
+        if (data.success && Array.isArray(data.data)) {
+          const updatedData = data.data.map((item: any) => ({
+            ...item,
+            completed: false
+          }));
+          console.log('Fetched stages with completed field:', updatedData);
+          setAuditChecklist(updatedData);
+        } else {
+          console.error('Unexpected response format:', data);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const getCsrfToken = async () => {
+      const response = await axios.get('http://localhost:8000/api/csrf-token', { withCredentials: true });
+      console.log('response from csrf', response.data.csrf_token);
+      setCsrfToken(response.data.csrf_token);
+    };
+    getCsrfToken();
+  }, []);
+
+  const handleSaveAnswers = (stageId: number, selectedChoices: Record<number, string[]>) => {
+    console.log(`Saving answers for stage ${stageId}:`, selectedChoices);
+   
+    setAnswers((prev) => ({
+      ...prev,
+      [stageId]: {
+        ...prev[stageId],
+        ...selectedChoices, // Merge selectedChoices into the stage's answers
+      },
+    }));
+  
+    // Add the current stage to completedStages if not already there
+    if (!completedStages.includes(stageId)) {
+      setCompletedStages((prev) => [...prev, stageId]);
+    }
+  
+    const updatedChecklist = auditChecklist.map((item) => {
+      if (item.id === stageId) {
+        return { ...item, completed: true }; // Mark stage as completed
+      }
+      return item;
+    });
+  
+    setAuditChecklist(updatedChecklist);
+  };
+
+  const handleFinalSubmit = async () => {
+    try {
+      setIsLoading(true); // Show loading spinner
+      setShowReportModal(true); // Show the modal pop-up
+      
+      const userId = localStorage.getItem('userId');
+
+      const response = await axios.post(
+        'http://localhost:8000/api/submit-answers',
+        {
+          user_id: userId,
+          answers: answers,
+        },
+        {
+          headers: {
+            'X-CSRF-TOKEN': csrfToken,
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (response.data.success) {
+        setChecklistCompleted(true); // Mark checklist as completed after successful submission
+        console.log('All answers submitted successfully:', response.data);
+        const reportLinkFromResponse = response.data.pdf_url; 
+        setReportLink(reportLinkFromResponse); 
+
+        // Simulate report generation and redirect after success
+        setTimeout(() => {
+          setIsLoading(false); // Hide loading spinner
+          setShowReportModal(false); // Close the modal
+
+          // Redirect to report page
+         // router.push('/report');
+        }, 3000); // Wait for 3 seconds before redirecting
+      } else {
+        console.error('Failed to submit answers:', response.data.message);
+        setIsLoading(false);
+        setShowReportModal(false);
+      }
+    } catch (error) {
+      console.error('Error submitting answers:', error);
+      setIsLoading(false);
+      setShowReportModal(false);
+    }
   };
 
   return (
@@ -87,7 +173,11 @@ export default function ComplianceAuditChecklist() {
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Audit Checklist Completed</h3>
                 <p className="mb-4">Great job! You can view the full report in the Reports tab.</p>
-                <Button variant="outline">
+                 <Button 
+                  variant="outline" 
+                  onClick={() => router.push(reportLink)} // Redirect to report download
+                  disabled={!reportLink} // Disable if no report link
+                >
                   <FileText className="mr-2 h-4 w-4" />
                   View Audit Report
                 </Button>
@@ -96,29 +186,19 @@ export default function ComplianceAuditChecklist() {
               <Accordion type="single" collapsible className="w-full">
                 {auditChecklist.map((item) => (
                   <AccordionItem key={item.id} value={`item-${item.id}`}>
-                    <AccordionTrigger>
+                    <AccordionTrigger onClick={() => openQuestionsModal(item.id, item.stage)}>
                       <div className="flex items-center">
                         {item.completed ? (
                           <CheckCircle className="mr-2 h-5 w-5 text-green-500" />
                         ) : (
                           <Circle className="mr-2 h-5 w-5 text-gray-300" />
                         )}
-                        <span>{item.title}</span>
+                        <span>{item.stage}</span>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <p className="mb-2 text-muted-foreground">{item.description}</p>
                       <ul className="list-disc pl-5 space-y-1">
-                        {item.steps.map((step, index) => (
-                          <li key={index}>
-                            <a
-                              href={step.link}
-                              className="text-blue-500 hover:underline"
-                            >
-                              {step.text}
-                            </a>
-                          </li>
-                        ))}
+                        {/* You can add steps content here if needed */}
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
@@ -131,12 +211,53 @@ export default function ComplianceAuditChecklist() {
               <CalendarIcon className="mr-2 h-4 w-4 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">Next audit: {nextAuditDate}</span>
             </div>
-            <Button onClick={toggleChecklistCompletion}>
-              {checklistCompleted ? "Reopen Checklist" : "Mark as Completed"}
+            <Button
+              onClick={handleFinalSubmit}
+              disabled={completedStages.length !== auditChecklist.length} // Disable until all stages are completed
+            >
+              Submit All Answers
             </Button>
           </CardFooter>
         </Card>
       </div>
+  
+      {/* Questions Modal */}
+      {showQuestionsModal && selectedStage && (
+        <QuestionsModal
+          onShow={showQuestionsModal}
+          stage={selectedStage}
+          industry={1}
+          onClose={closeQuestionsModal}
+          onSave={handleSaveAnswers} // Pass the onSave function
+        />
+      )}
+
+      {/* Modal showing loading and success message */}
+      <Modal open={showReportModal} onClose={() => setShowReportModal(false)}>
+        <Box sx={modalStyle}>
+          {isLoading ? (
+            <>
+              <CircularProgress />
+              <Typography variant="h6" mt={2}>We are generating your report...</Typography>
+            </>
+          ) : (
+            <Typography variant="h6">Your report is ready!</Typography>
+          )}
+        </Box>
+      </Modal>
     </LayoutPage>
   );
 }
+
+// Modal styles for MUI Modal
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
+};
+

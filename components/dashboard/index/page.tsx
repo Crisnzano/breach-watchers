@@ -26,9 +26,9 @@ const complianceStatus = {
   score: 75,
   nextAuditDate: "2024-03-15",
   upcomingTasks: [
-    { id: 1, task: "Annual data protection audit", deadline: "2024-03-15" },
-    { id: 2, task: "Privacy policy review", deadline: "2024-02-28" },
-    { id: 3, task: "Data breach notification drill", deadline: "2024-04-10" },
+    { id: 1, task: "Annual data protection audit", deadline: "2025-01-01" },
+    { id: 2, task: "Privacy policy review", deadline: "2024-11-15" },
+    { id: 3, task: "Data breach notification drill", deadline: "2024-11-10" },
   ],
   recentReports: [
     { id: 1, title: "Q4 2023 Compliance Audit", date: "2023-12-31" },
