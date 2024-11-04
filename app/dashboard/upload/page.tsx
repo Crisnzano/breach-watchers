@@ -24,12 +24,12 @@ const UploadPage = () => {
       return;
     }
 
-    setLoading(true); // Start loading spinner
+    setLoading(true); 
     const formData = new FormData();
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:8000/analyze_policy", {
+      const response = await fetch("http://localhost:8001/analyze_policy", {
         method: "POST",
         body: formData,
       });

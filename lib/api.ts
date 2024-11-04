@@ -7,7 +7,7 @@ export const askQuestion = async (file: File, question: string, sessionId: strin
       formData.append("session_id", sessionId);
     }
   
-    const response = await fetch("http://localhost:8000/ask_question", {
+    const response = await fetch("http://localhost:8001/ask_question", {
       method: "POST",
       body: formData,
     });
@@ -16,7 +16,7 @@ export const askQuestion = async (file: File, question: string, sessionId: strin
   };
   
   export const downloadReport = async (sessionId: string) => {
-    const response = await fetch(`http://localhost:8000/download_report?session_id=${sessionId}`);
+    const response = await fetch(`http://localhost:8001/download_report?session_id=${sessionId}`);
     if (response.ok) {
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
