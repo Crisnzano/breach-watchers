@@ -17,6 +17,12 @@
 </p>
 <br/>
 
+## Backend Repositories
+
+- This project was made with two backend repositories:
+  - Python Backend repository link (https://github.com/CindyBSydney/breachwatchers-backend/tree/main).
+  - Laravel Backend repository link()
+
 ## Features
 
 - Works across the entire [Next.js](https://nextjs.org) stack
