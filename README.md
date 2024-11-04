@@ -91,6 +91,9 @@ If you wish to just develop locally and not deploy to Vercel, [follow the steps 
 
 > Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
 
+## Backend Setup
+The backend set up of the project responsible for the audit checklist is developed using Laravel and Supabase. You can access the full code [here](https://github.com/JeanWasike/breach-watchers-backend).
+
 ## Feedback and issues
 
 Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
