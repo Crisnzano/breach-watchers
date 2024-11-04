@@ -13,15 +13,15 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import LayoutPage from "../Layout";
 import AppBar from "@/components/layout/AppBar";
 import axios from 'axios';
-import QuestionsModal from './QuestionsModal'; // Import the QuestionsModal component
-import { Modal, Box, CircularProgress, Typography } from '@mui/material'; // Modal component for loading state
+import QuestionsModal from './QuestionsModal'; 
+import { Modal, Box, CircularProgress, Typography } from '@mui/material'; 
 import { useRouter } from "next/navigation";
 
 interface Stage {
   id: number;
   stage_id: string;
   stage: string;
-  completed: boolean; // Changed to boolean for easier tracking
+  completed: boolean; 
 }
 
 export default function ComplianceAuditChecklist() {
@@ -29,13 +29,11 @@ export default function ComplianceAuditChecklist() {
   const nextAuditDate = "2024-06-15";
   const [stages, setStages] = useState<Stage[]>([]);
   const [auditChecklist, setAuditChecklist] = useState<Stage[]>([]);
-  const [completedStages, setCompletedStages] = useState<number[]>([]); // Track completed stages
+  const [completedStages, setCompletedStages] = useState<number[]>([]); 
   const [csrfToken, setCsrfToken] = useState('');
   const [answers, setAnswers] = useState<Record<number, Record<number, string[]>>>({});
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
   const [showQuestionsModal, setShowQuestionsModal] = useState(false);
-
-  // Modal states for loading and success
   const [showReportModal, setShowReportModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -46,12 +44,12 @@ export default function ComplianceAuditChecklist() {
   };
 
   const openQuestionsModal = (id: number, stage: string) => {
-    setSelectedStage(id); // Set the selected stage
-    setShowQuestionsModal(true); // Open the modal
+    setSelectedStage(id); 
+    setShowQuestionsModal(true); 
   };
 
   const closeQuestionsModal = () => {
-    setShowQuestionsModal(false); // Close the modal
+    setShowQuestionsModal(false);
   };
 
   useEffect(() => {
@@ -92,18 +90,16 @@ export default function ComplianceAuditChecklist() {
       ...prev,
       [stageId]: {
         ...prev[stageId],
-        ...selectedChoices, // Merge selectedChoices into the stage's answers
+        ...selectedChoices, 
       },
     }));
-  
-    // Add the current stage to completedStages if not already there
     if (!completedStages.includes(stageId)) {
       setCompletedStages((prev) => [...prev, stageId]);
     }
   
     const updatedChecklist = auditChecklist.map((item) => {
       if (item.id === stageId) {
-        return { ...item, completed: true }; // Mark stage as completed
+        return { ...item, completed: true }; 
       }
       return item;
     });
@@ -113,8 +109,8 @@ export default function ComplianceAuditChecklist() {
 
   const handleFinalSubmit = async () => {
     try {
-      setIsLoading(true); // Show loading spinner
-      setShowReportModal(true); // Show the modal pop-up
+      setIsLoading(true); 
+      setShowReportModal(true); 
       
       const userId = localStorage.getItem('userId');
 
@@ -133,19 +129,16 @@ export default function ComplianceAuditChecklist() {
       );
 
       if (response.data.success) {
-        setChecklistCompleted(true); // Mark checklist as completed after successful submission
+        setChecklistCompleted(true); 
         console.log('All answers submitted successfully:', response.data);
         const reportLinkFromResponse = response.data.pdf_url; 
         setReportLink(reportLinkFromResponse); 
 
-        // Simulate report generation and redirect after success
+       
         setTimeout(() => {
-          setIsLoading(false); // Hide loading spinner
-          setShowReportModal(false); // Close the modal
-
-          // Redirect to report page
-         // router.push('/report');
-        }, 3000); // Wait for 3 seconds before redirecting
+          setIsLoading(false); 
+          setShowReportModal(false);         
+        }, 3000);
       } else {
         console.error('Failed to submit answers:', response.data.message);
         setIsLoading(false);
@@ -198,7 +191,6 @@ export default function ComplianceAuditChecklist() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="list-disc pl-5 space-y-1">
-                        {/* You can add steps content here if needed */}
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
@@ -213,7 +205,7 @@ export default function ComplianceAuditChecklist() {
             </div>
             <Button
               onClick={handleFinalSubmit}
-              disabled={completedStages.length !== auditChecklist.length} // Disable until all stages are completed
+              disabled={completedStages.length !== auditChecklist.length}
             >
               Submit All Answers
             </Button>
@@ -229,7 +221,7 @@ export default function ComplianceAuditChecklist() {
           stage={selectedStage}
           industry={1}
           onClose={closeQuestionsModal}
-          onSave={handleSaveAnswers} // Pass the onSave function
+          onSave={handleSaveAnswers} 
         />
       )}
 

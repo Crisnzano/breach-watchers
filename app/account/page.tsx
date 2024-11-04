@@ -10,8 +10,6 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import axios from 'axios';
 
-
-
 interface Industry {
   id: string;
   industry_name: string;
@@ -29,7 +27,6 @@ export default function BusinessRegistrationForm() {
     industryName: ''
   })
 
-   // State to hold the fetched data
    const [industries, setIndustries] = useState<Industry[]>([]);
    const [selectedIndustry, setSelectedIndustry] = useState('');
    const [csrfToken, setCsrfToken] = useState('');
@@ -67,23 +64,8 @@ export default function BusinessRegistrationForm() {
     };
     getCsrfToken();
   }, []);
-  // const getCsrfToken = async () => {
-  //   try {
-  //     await axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {
-  //       withCredentials: true, 
-  //     });
-  //   } catch (error) {
-  //     console.error('Error fetching CSRF token:', error);
-  //   }
-  // };
-  // const getCsrfToken = async () => {
-  //         const response = await axios.get('http://localhost:8000/api/csrf-token', { withCredentials: true });
-  //         console.log('response from csrf', response.data.csrf_token);
-  //         setCsrfToken(response.data.csrf_token);
-  //     };
   const getUserDetails = async () => {
     try {
-     // getCsrfToken();
       const response = await axios.get('http://127.0.0.1:8000/api/user', {
         headers: {
           'X-CSRF-TOKEN': csrfToken
@@ -99,15 +81,6 @@ export default function BusinessRegistrationForm() {
       console.error('Error fetching user details:', error);
     }
   };
-  // useEffect(() => {
-  //   getUserDetails();
-  // }, []);
-  // useEffect(() => {
-  //   if (csrfToken) {
-  //     getUserDetails();
-  //   }
-  // }, [csrfToken]);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData(prevData => ({ ...prevData, [name]: value }))
@@ -123,7 +96,7 @@ export default function BusinessRegistrationForm() {
     setFormData(prevData => ({
       ...prevData,
       industry: value,
-      industryName: selectedIndustry ? selectedIndustry.industry_name : '' // Default to empty string
+      industryName: selectedIndustry ? selectedIndustry.industry_name : '' 
     }));
 
     // Log formData after state update

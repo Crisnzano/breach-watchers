@@ -3,7 +3,6 @@ import { Modal, Button, Checkbox, FormControlLabel } from '@mui/material';
 import axios from 'axios';
 import './QuestionsModal.css';
 
-// Define the Question interface
 interface Question {
   id: number;
   question_id: string;
@@ -15,13 +14,12 @@ interface Question {
   compliant_choices: string[];
 }
 
-// Define the props for the QuestionsModal component
 interface QuestionsModalProps {
   onShow: boolean;
   stage: number;
   industry: number;
   onClose: () => void;
-  onSave: (stageId: number, selectedChoices: Record<number, string[]>) => void; // Add onSave prop to pass selected answers back
+  onSave: (stageId: number, selectedChoices: Record<number, string[]>) => void; 
 }
 
 const QuestionsModal: React.FC<QuestionsModalProps> = ({ onShow, stage, industry, onClose, onSave }) => {
@@ -85,27 +83,22 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ onShow, stage, industry
       const response = await axios.get('http://localhost:8000/api/csrf-token', { withCredentials: true });
       console.log('response from csrf', response.data.csrf_token);
       setCsrfToken(response.data.csrf_token);
-      // Call fetchData with the obtained CSRF token
       await fetchData(response.data.csrf_token);
     };
-
-    // Only call getCsrfToken if onShow is true
     if (onShow) {
       getCsrfToken();
     }
-  }, [onShow, stage]); // Adding dependencies for re-running effect when these change
+  }, [onShow, stage]); 
 
   const handleCheckboxChange = (questionId: number, choice: string) => {
     setSelectedChoices((prev) => {
       const currentChoices = prev[questionId] || [];
       if (currentChoices.includes(choice)) {
-        // If already selected, remove the choice
         return {
           ...prev,
           [questionId]: currentChoices.filter((c) => c !== choice),
         };
       } else {
-        // Otherwise, add the choice
         return {
           ...prev,
           [questionId]: [...currentChoices, choice],
@@ -115,8 +108,8 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ onShow, stage, industry
   };
 
   const handleSave = () => {
-    onSave(stage, selectedChoices); // Pass the selected choices back to the main component
-    onClose(); // Close the modal after saving
+    onSave(stage, selectedChoices); 
+    onClose(); 
   };
 
   return (

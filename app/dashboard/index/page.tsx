@@ -15,7 +15,7 @@ interface Report {
   report_name: string;
   report_link: string;
   created_at: string;
-  user_id: UUID; // Changed to boolean for easier tracking
+  user_id: UUID; 
 }
 
 export default function ComplianceDashboard() {
@@ -48,12 +48,10 @@ export default function ComplianceDashboard() {
   };
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
-    // Format the date to YYYY-MM-DD
     return date.toISOString().split('T')[0];
   };
 
   const sendReminder = () => {
-    // Simulating sending a reminder
     setTimeout(() => {
       setReminderSent(true);
       setTimeout(() => setReminderSent(false), 3000);
@@ -61,31 +59,16 @@ export default function ComplianceDashboard() {
   };
 
   const downloadReport = (reportLink: string) => {
-    // Create an anchor element
     const link = document.createElement('a');
     link.href = reportLink;
-    link.target = '_blank'; // Open in a new tab (optional)
-    link.download = ''; // This attribute tells the browser to download the file instead of navigating to it
-  
-    // Append the anchor to the body
+    link.target = '_blank'; 
+    link.download = ''; 
     document.body.appendChild(link);
   
-    // Trigger the click event
     link.click();
-  
-    // Remove the anchor from the document
     document.body.removeChild(link);
   };
   
-  // useEffect(() => {
-  //   const getCsrfToken = async () => {
-  //     const response = await axios.get('http://localhost:8000/api/csrf-token', { withCredentials: true });
-  //     console.log('response from csrf', response.data.csrf_token);
-  //     setCsrfToken(response.data.csrf_token);
-  //   };
-  //   getCsrfToken();
-  // }, []);
-
   // Fetch recent reports from the backend
   useEffect(() => {
     const fetchData = async () => {
@@ -99,7 +82,7 @@ export default function ComplianceDashboard() {
         const userData = localStorage.getItem('userId');
         const reportsResponse = await axios.post('http://localhost:8000/api/recent-reports', { 'user': userData }, {
           headers: {
-            'X-CSRF-TOKEN': csrfResponse.data.csrf_token, // Use the fetched CSRF token here
+            'X-CSRF-TOKEN': csrfResponse.data.csrf_token, 
           },
           withCredentials: true,
         });

@@ -3,7 +3,7 @@ import { Menubar, MenubarMenu, MenubarTrigger } from "@radix-ui/react-menubar";
 import MediumButton from "../mediumbutton";
 import { createClient } from "@/utils/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User } from "@supabase/supabase-js"; // Import the User type from Supabase
+import { User } from "@supabase/supabase-js"; 
 import { useState, useEffect } from "react";
 
 export default function AppBar() {
@@ -17,7 +17,7 @@ export default function AppBar() {
       setUser(data.user); // Store the authenticated user
     } else if (error) {
       console.error("Error fetching user:", error);
-      setUser(null); // Ensure the user is set to null if not authenticated
+      setUser(null); 
     }
   };
 
@@ -31,7 +31,7 @@ export default function AppBar() {
     if (error) {
       console.error("Error logging out:", error);
     } else {
-      setUser(null); // Clear user on successful logout
+      setUser(null); 
     }
   };
 
