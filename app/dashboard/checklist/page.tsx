@@ -223,6 +223,7 @@ export default function ComplianceAuditChecklist() {
   
       {/* Questions Modal */}
       {showQuestionsModal && selectedStage && (
+        
         <QuestionsModal
           onShow={showQuestionsModal}
           stage={selectedStage}

@@ -29,7 +29,7 @@ const UploadPage = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:8000/analyze_policy", {
+      const response = await fetch("http://localhost:8001/analyze_policy", {
         method: "POST",
         body: formData,
       });
