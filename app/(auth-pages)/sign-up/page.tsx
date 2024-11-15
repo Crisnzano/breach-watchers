@@ -8,12 +8,16 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Auth } from "@supabase/auth-ui-react";
+import { createClient } from "@/utils/supabase/client";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 export default function Signup({ searchParams }: { searchParams: Message }) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const supabase = createClient();
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
@@ -83,6 +87,15 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
           <SubmitButton pendingText="Signing up...">
             Sign up
           </SubmitButton>
+           {/* Only show Google sign-in */}
+           <div className="mt-4">
+            <Auth
+              supabaseClient={supabase}
+              providers={["google"]}
+              onlyThirdPartyProviders
+              appearance={{ theme: ThemeSupa }}
+            />
+          </div>
           <div className="flex justify-center mt-10">
             <Link className="underline" href="/account">
               Register your Business

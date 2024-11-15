@@ -1,6 +1,7 @@
 import React from "react";
 import Image from 'next/image';
-
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
@@ -30,7 +31,15 @@ export default function HeroSection() {
         <p className="text-lg lg:text-xl text-gray-300">
           Delivering immediate value through rule-based compliance checks, privacy policy auditing, and compliance reminders.
         </p>
+        <div className="flex justify-center mt-10">
+          <Link href="/dashboard/index">
+            <Button className="bg-purple-200">
+              Get Started
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
+    
   );
 }
