@@ -7,12 +7,16 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Auth } from "@supabase/auth-ui-react";
+import { createClient } from "@/utils/supabase/client";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 export default function Login({ searchParams }: { searchParams: Message }) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const supabase = createClient();
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
@@ -40,11 +44,17 @@ export default function Login({ searchParams }: { searchParams: Message }) {
 
   return (
     <div className="flex items-center justify-center h-screen w-full bg-purple-200">
-      <form className="flex flex-col p-8 bg-purple-900 rounded-lg text-white w-full max-w-md" onSubmit={handleSignIn}>
+      <form
+        className="flex flex-col p-8 bg-purple-900 rounded-lg text-white w-full max-w-md"
+        onSubmit={handleSignIn}
+      >
         <h1 className="text-3xl font-medium mb-4">Sign in</h1>
         <p className="text-sm mb-6">
           Don&apos;t have an account?{" "}
-          <Link className="text-purple-200 font-medium underline" href="/sign-up">
+          <Link
+            className="text-purple-200 font-medium underline"
+            href="/sign-up"
+          >
             Sign up
           </Link>
         </p>
@@ -76,11 +86,21 @@ export default function Login({ searchParams }: { searchParams: Message }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)} // Capture password input
           />
-          <SubmitButton pendingText="Signing In...">
-            Sign in
-          </SubmitButton>
+          <SubmitButton pendingText="Signing In...">Sign in</SubmitButton>
+
+          {/* Only show Google sign-in */}
+          <div className="mt-4">
+            <Auth
+              supabaseClient={supabase}
+              providers={["google"]}
+              onlyThirdPartyProviders
+              appearance={{ theme: ThemeSupa }}
+            />
+          </div>
+
           <FormMessage message={searchParams} />
-          {error && <p className="text-red-500">{error}</p>} {/* Display error message */}
+          {error && <p className="text-red-500">{error}</p>}{" "}
+          {/* Display error message */}
         </div>
       </form>
     </div>
