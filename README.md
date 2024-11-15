@@ -17,6 +17,12 @@
 </p>
 <br/>
 
+## Backend Repositories
+
+- This project was made with two backend repositories:
+  - Python Backend repository link (https://github.com/CindyBSydney/breachwatchers-backend/tree/main).
+  - Laravel Backend repository link()
+
 ## Features
 
 - Works across the entire [Next.js](https://nextjs.org) stack
@@ -84,6 +90,9 @@ If you wish to just develop locally and not deploy to Vercel, [follow the steps 
 6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
 
 > Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+
+## Backend Setup
+The backend set up of the project responsible for the audit checklist is developed using Laravel and Supabase. You can access the full code [here](https://github.com/JeanWasike/breach-watchers-backend).
 
 ## Feedback and issues
 
