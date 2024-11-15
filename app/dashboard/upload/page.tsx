@@ -6,9 +6,9 @@ import AppBar from "@/components/layout/AppBar";
 
 const UploadPage = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [answers, setAnswers] = useState<{ question: string; answer: string }[]>(
-    []
-  );
+  const [answers, setAnswers] = useState<
+    { question: string; answer: string }[]
+  >([]);
   const [pdfLink, setPdfLink] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -24,12 +24,12 @@ const UploadPage = () => {
       return;
     }
 
-    setLoading(true); 
+    setLoading(true);
     const formData = new FormData();
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:8001/analyze_policy", {
+      const response = await fetch("http://localhost:8000/analyze_policy", {
         method: "POST",
         body: formData,
       });
@@ -90,7 +90,9 @@ const UploadPage = () => {
               ))}
               {pdfLink && (
                 <a
-                  href={`http://localhost:8000/${pdfLink}`}
+                  href={`http://localhost:8000${pdfLink}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   download
                   className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-md"
                 >
@@ -111,8 +113,12 @@ const UploadPage = () => {
           animation: spin 1s linear infinite;
         }
         @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
       `}</style>
     </LayoutPage>
